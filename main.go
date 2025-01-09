@@ -2,6 +2,39 @@ package main
 
 import "fmt"
 
+func getName() string {
+	name := ""
+
+	fmt.Println("Welcome To Samra's Casino...")
+	fmt.Printf("Enter you name: ")
+	_, err := fmt.Scanln(&name)
+	if err != nil {
+		return ""
+	}
+	fmt.Printf("Welcome %s, let's play!\n", name)
+	return name
+}
+
+func getBet(balance uint) uint {
+
+	var bet uint
+	for true {
+		fmt.Printf("Enter your bet, or 0 to quit (balance = $%d): ", balance)
+		fmt.Scan(&bet)
+
+		if bet > balance {
+			fmt.Println("Bet cannot be larger than balance.")
+		} else {
+			break
+		}
+
+	}
+	return bet
+}
+
 func main() {
-    fmt.Println("Hello, World!")
+	balance := 200
+	getBet(uint(balance))
+	getName()
+
 }
