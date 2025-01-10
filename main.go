@@ -43,6 +43,15 @@ func generateSymbolArray(symbols map[string]uint) []string {
 	return symbolArr
 }
 
+func getSpin(reel []string, row int, cols int) [][]string {
+	result := [][]string{}
+
+	for i := 0; i < rows; i++ {
+		result = append(result, []string{})
+	}
+
+}
+
 func main() {
 	symbols := map[string]uint{
 		"A": 4,
