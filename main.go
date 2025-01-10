@@ -40,9 +40,25 @@ func generateSymbolArray(symbols map[string]uint) []string {
 
 		}
 	}
+	return symbolArr
 }
 
 func main() {
+	symbols := map[string]uint{
+		"A": 4,
+		"B": 7,
+		"C": 12,
+		"D": 20,
+	}
+	// multiplier := map[string]uint{
+	// 	"A": 20,
+	// 	"B" : 10,
+	// 	"C" : 7,
+	// 	"D" : 2,
+	// }
+
+	symbolArr := generateSymbolArray(symbols)
+	fmt.Println(symbolArr)
 	balance := uint(200)
 	getName()
 
