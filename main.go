@@ -32,9 +32,27 @@ func getBet(balance uint) uint {
 	return bet
 }
 
+func generateSymbolArray(symbols map[string]uint) []string {
+	for symbol, count := range symbols {
+		for i := 0; i < int(count); i++ {
+
+		}
+	}
+}
+
 func main() {
-	balance := 200
-	getBet(uint(balance))
+	balance := uint(200)
 	getName()
+
+	for balance > 0 {
+		bet := getBet(balance)
+		if bet == 0 {
+			break
+		}
+		balance -= bet
+		fmt.Println(bet)
+
+	}
+	fmt.Printf("You left with, $%fd.\n", balance)
 
 }
