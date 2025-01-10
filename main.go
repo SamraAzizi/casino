@@ -33,8 +33,10 @@ func getBet(balance uint) uint {
 }
 
 func generateSymbolArray(symbols map[string]uint) []string {
+	symbolArr := []string{}
 	for symbol, count := range symbols {
-		for i := 0; i < int(count); i++ {
+		for i := uint(0); i < count; i++ {
+			symbolArr = append(symbolArr, symbol)
 
 		}
 	}
