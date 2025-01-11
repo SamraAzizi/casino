@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
 
 func getName() string {
 	name := ""
@@ -44,8 +46,8 @@ func generateSymbolArray(symbols map[string]uint) []string {
 	return symbolArr
 }
 
-func getRandomNumber(min int, max int)int{
-	randomNumber := rand.Intn(max - min + 1) + min
+func getRandomNumber(min int, max int) int {
+	randomNumber := rand.Intn(max-min+1) + min
 	return randomNumber
 
 }
@@ -56,19 +58,26 @@ func getSpin(reel []string, row int, cols int) [][]string {
 	for i := 0; i < rows; i++ {
 		result = append(result, []string{})
 	}
-	for col := 0; col < cols; col++{
+	for col := 0; col < cols; col++ {
 
 		selected := map[int]bool{}
 
-		for row := 0; row <row; row++{
+		for row := 0; row < row; row++ {
 			for true {
-				randomIndex :=
+				randomIndex := getRandomNumber(0, len(reel)-1)
+				_, exists := selected[randomIndex]
+				if !exists {
+					selected[randomIndex] = true
+					result[row][col] = reel[randomIndex]
+					break
+				}
 
 			}
 
 		}
 
 	}
+	return result
 
 }
 
