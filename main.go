@@ -94,5 +94,21 @@ func main() {
 	// 	"C" : 7,
 	// 	"D" : 2,
 	// }
+	symbolArr := generateSymbolArray(symbols)
+	fmt.Println(symbolArr)
+	balance := uint(200)
+	getName()
 
+	for balance > 0 {
+		bet := getBet(balance)
+		if bet == 0 {
+			break
+		}
+		balance -= bet
+		fmt.Println(bet)
+
+	}
+	fmt.Printf("You left with, $%fd.\n", balance)
+
+}
 
