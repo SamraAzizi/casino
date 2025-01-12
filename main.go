@@ -108,9 +108,7 @@ func checkWin(spin [][]string, multipliers map[string]int) []int {
 		}
 		if win {
 			lines = append(lines, multipliers[checkSymbol])
-		} else {
-			lines = append(lines, 0)
-		}
+		
 	}
 
 }
@@ -128,7 +126,6 @@ func main() {
 	// 	"C" : 7,
 	// 	"D" : 2,
 	// }
-
 	symbolArr := generateSymbolArray(symbols)
 
 	balance := uint(200)
@@ -150,3 +147,4 @@ func main() {
 	fmt.Printf("You left with, $%fd.\n", balance)
 
 }
+
