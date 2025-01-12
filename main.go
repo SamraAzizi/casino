@@ -68,7 +68,7 @@ func getSpin(reel []string, row int, cols int) [][]string {
 				_, exists := selected[randomIndex]
 				if !exists {
 					selected[randomIndex] = true
-					result[row][col] = reel[randomIndex]
+					result[row] = append(result[row], reel[randomIndex])
 					break
 				}
 
@@ -78,6 +78,40 @@ func getSpin(reel []string, row int, cols int) [][]string {
 
 	}
 	return result
+
+}
+
+func printSpin(spin [][]string) {
+	for _, row := range spin {
+		for j, symbol := range row {
+			fmt.Printf(symbol)
+			if j != len(row)-1 {
+				fmt.Printf(" | ")
+			}
+		}
+		fmt.Println()
+
+	}
+}
+
+func checkWin(spin [][]string, multipliers map[string]int) []int {
+	lines := []int{}
+
+	for i, row := range spin {
+		win := true
+		checkSymbol := row[0]
+		for _, symbol := range row[1:] {
+			if checkSymbol != symbol {
+				win = false
+				break
+			}
+		}
+		if win {
+			lines = append(lines, multipliers[checkSymbol])
+		} else {
+			lines = append(lines, 0)
+		}
+	}
 
 }
 
@@ -96,7 +130,7 @@ func main() {
 	// }
 
 	symbolArr := generateSymbolArray(symbols)
-	fmt.Println(symbolArr)
+
 	balance := uint(200)
 	getName()
 
@@ -106,7 +140,11 @@ func main() {
 			break
 		}
 		balance -= bet
+		spin := getSpin(symbolArr, 3, 3)
+		printSpin(spin)
 		fmt.Println(bet)
+
+		//check
 
 	}
 	fmt.Printf("You left with, $%fd.\n", balance)
