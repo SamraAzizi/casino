@@ -6,58 +6,6 @@ import (
 	"time"
 )
 
-// Function to generate a symbol array from a symbol-to-count map
-func generateSymbolArray(symbols map[string]uint) []string {
-	symbolArr := []string{}
-	for symbol, count := range symbols {
-		for i := uint(0); i < count; i++ {
-			symbolArr = append(symbolArr, symbol)
-		}
-	}
-	return symbolArr
-}
-
-// Function to generate a random number in a given range
-func getRandomNumber(min int, max int) int {
-	return rand.Intn(max-min+1) + min
-}
-
-// Function to generate a spin result
-func getSpin(reel []string, rows int, cols int) [][]string {
-	result := make([][]string, rows)
-	for i := 0; i < rows; i++ {
-		result[i] = []string{}
-	}
-
-	for col := 0; col < cols; col++ {
-		selected := map[int]bool{}
-		for row := 0; row < rows; row++ {
-			for {
-				randomIndex := getRandomNumber(0, len(reel)-1)
-				if !selected[randomIndex] {
-					selected[randomIndex] = true
-					result[row] = append(result[row], reel[randomIndex])
-					break
-				}
-			}
-		}
-	}
-	return result
-}
-
-// Function to print the spin results
-func printSpin(spin [][]string) {
-	for _, row := range spin {
-		for j, symbol := range row {
-			fmt.Print(symbol)
-			if j != len(row)-1 {
-				fmt.Print(" | ")
-			}
-		}
-		fmt.Println()
-	}
-}
-
 // Function to check for winning lines
 func checkWin(spin [][]string, multipliers map[string]uint) []uint {
 	lines := []uint{}
@@ -97,7 +45,7 @@ func main() {
 		"D": 2,
 	}
 
-	symbolArr := generateSymbolArray(symbols)
+	symbolArr := GenerateSymbolArray(symbols)
 	balance := uint(200)
 	GetName()
 
@@ -108,8 +56,8 @@ func main() {
 		}
 
 		balance -= bet
-		spin := getSpin(symbolArr, 3, 3)
-		printSpin(spin)
+		spin := GetSpin(symbolArr, 3, 3)
+		PrintSpin(spin)
 
 		winningLines := checkWin(spin, multipliers)
 		for i, multi := range winningLines {
